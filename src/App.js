@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
-import Cards from './Components/Cards/Cards';
+import Home from './Components/Home/Home';
+import Navbars from './Components/Navbar/Navbars';
+import './Components/Home/Home.css'
 
 
 
@@ -9,7 +10,7 @@ const App = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("https://randomuser.me/api/?results=10")
+    fetch("https://randomuser.me/api/?results=9")
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -21,15 +22,20 @@ const App = () => {
 
   return (
     <>
-      {users.map(user => (
-        <Cards
-          image={user.picture.medium}
-          name={user.name.first + " " + user.name.last}
-          email={user.email}
-          nationality={user.nat}
-          age={user.dob.age}
-        />
-      ))}
+      <Navbars />
+      <div className="container">
+
+        {users.map(user => (
+          <Home
+            image={user.picture.medium}
+            name={user.name.first + " " + user.name.last}
+            email={user.email}
+            nationality={user.nat}
+            age={user.dob.age}
+          />
+        ))}
+
+      </div>
     </>
   );
 
