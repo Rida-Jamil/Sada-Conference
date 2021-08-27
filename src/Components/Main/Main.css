@@ -1,0 +1,13 @@
+.wrapp {
+    display: flex !important; 
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    margin: 30px;
+    border: thin solid black;
+}
+
+.card {
+    border: thin solid black;
+    margin: 15px;
+}

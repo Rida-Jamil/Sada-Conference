@@ -1,41 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import Home from './Components/Home/Home';
+import React from 'react';
 import Navbars from './Components/Navbar/Navbars';
-import './Components/Home/Home.css'
+// import Cards from './Components/Cards/Cards';
+// import Contact from './Components/Contact/Contact';
+// import About from './Components/About/About';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+// } from "react-router-dom";
 
 
-
-const App = () => {
-
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetch("https://randomuser.me/api/?results=9")
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setUsers(data.results);
-      });
-  }, [])
-
-
+function App() {
 
   return (
     <>
       <Navbars />
-      <div className="container">
-
-        {users.map(user => (
-          <Home
-            image={user.picture.medium}
-            name={user.name.first + " " + user.name.last}
-            email={user.email}
-            nationality={user.nat}
-            age={user.dob.age}
-          />
-        ))}
-
-      </div>
     </>
   );
 

@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import React, { useEffect, useState } from 'react';
+import Main from '../Main/Main';
 
 
-const Home = (props) => {
+const Home = () => {
+    const [users, setUsers] = useState([]);
 
-    const [age, setAge] = useState(false);
-
+    useEffect(() => {
+      fetch("https://randomuser.me/api/?results=8")
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setUsers(data.results);
+        });
+    }, [])
+  
     return (
-            <Card style={{ width: '18rem'}}>
-                <Card.Img variant="top" src= {props.image} />
-                <Card.Body>
-                    <Card.Title>Contact Name</Card.Title>
-                    <Card.Text>
-                        <p>Name: {props.name} </p>
-                        <p>Email: {props.email} </p>
-                        <p>Nationality: {props.nationality} </p>
-                        {age && <p> Age: {props.age} </p>}
-                    </Card.Text>
-                    <Button variant="success" onClick={() => setAge(!age)}>Show Age</Button>
-                </Card.Body>
-            </Card>
+      <>
+        <div className="wrapp">
+  
+          {users.map(user => (
+            <Main
+              image={user.picture.medium}
+              name={user.name.first + " " + user.name.last}
+              email={user.email}
+              nationality={user.nat}
+              age={user.dob.age}
+            />
+          ))}
+  
+        </div>
+  
+      </>
     );
-};
-
+}
 
 export default Home;
