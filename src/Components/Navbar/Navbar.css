@@ -4,9 +4,8 @@
 
 .navbar {
     font-size: large;
-    /* align-content: center;
-    text-align: right;
-    align-items: middle;
-    justify-content: center;
-    justify-items: center; */
+}
+
+.nav-btn {
+    margin: 12px 550px;
 }
